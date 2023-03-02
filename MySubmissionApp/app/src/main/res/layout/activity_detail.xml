@@ -36,7 +36,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_desc"
             app:layout_constraintTop_toBottomOf="@+id/img_detail_photo"
-            tools:text="@string/crypto_name" />
+            tools:text="Nama Crypto" />
+
+
+        <TextView
+            android:id="@+id/tv_total_supply_s"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/total_supply"
+            android:textColor="@color/blue_700"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
+
+        <TextView
+            android:id="@+id/tv_total_supply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:lineSpacingMultiplier="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_supply_s"
+            tools:text="1.000.000" />
+
+        <TextView
+            android:id="@id/tv_detail_desc_s"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/description"
+            android:textColor="@color/blue_700"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_total_supply"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total_supply" />
 
         <TextView
             android:id="@+id/tv_detail_desc"
@@ -48,8 +86,8 @@
             android:lineSpacingMultiplier="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_name"
-            tools:text="@string/crypto_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_desc_s"
+            tools:text="Isi Deskripsi" />
 
         <Button
             android:id="@+id/action_share"

@@ -7,6 +7,7 @@
     <string name="my_name">Rivan Albani Ray</string>
     <string name="my_email">rivanalbaniray88@gmail.com</string>
     <string name="share">Share</string>
+    <string name="total_supply">Total Supply</string>
     <string-array name="data_name_crypto">
         <item>Bitcoin</item>
         <item>Ethereum</item>
@@ -42,5 +43,17 @@
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png</item>
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png</item>
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/2.png</item>
+    </string-array>
+    <string-array name="data_total_supply_crypto">
+        <item>19.305.818</item>
+        <item>122.373.866</item>
+        <item>159.979.964</item>
+        <item>50.950.912.949</item>
+        <item>34.670.969.104</item>
+        <item>132.670.764.300</item>
+        <item>8.734.317.475</item>
+        <item>378.852.542</item>
+        <item>1.162.228.638</item>
+        <item>72.391.252</item>
     </string-array>
 </resources>

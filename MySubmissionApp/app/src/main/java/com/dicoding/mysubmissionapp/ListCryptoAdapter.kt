@@ -20,7 +20,7 @@ class ListCryptoAdapter(
     override fun getItemCount(): Int = listCrypto.size
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (name, description, photo) = listCrypto[position]
+        val (name, _, description, photo) = listCrypto[position]
         Glide.with(holder.itemView.context).load(photo).into(holder.binding.imgItemPhoto)
         holder.binding.tvItemName.text = name
         holder.binding.tvItemDesc.text = description

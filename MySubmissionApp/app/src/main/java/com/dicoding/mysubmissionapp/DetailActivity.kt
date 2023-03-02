@@ -28,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
 
         Glide.with(this).load(crypto?.photo).into(binding.imgDetailPhoto)
         binding.tvDetailName.text = crypto?.name
+        binding.tvTotalSupply.text = "${crypto?.totalSupply} ${crypto?.name}"
         binding.tvDetailDesc.text = crypto?.description
         binding.actionShare.setOnClickListener {
             val sendIntent: Intent = Intent().apply {

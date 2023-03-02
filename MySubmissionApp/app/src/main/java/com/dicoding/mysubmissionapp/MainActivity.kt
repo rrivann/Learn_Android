@@ -26,11 +26,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun getListCrypto(): ArrayList<Crypto> {
         val dataNameCrypto = resources.getStringArray(R.array.data_name_crypto)
+        val dataTotalSupply = resources.getStringArray(R.array.data_total_supply_crypto)
         val dataDescriptionCrypto = resources.getStringArray(R.array.data_description_crypto)
         val dataPhotoCrypto = resources.getStringArray(R.array.data_photo_crypto)
         val listCrypto = ArrayList<Crypto>()
         for (i in dataNameCrypto.indices) {
-            val crypto = Crypto(dataNameCrypto[i], dataDescriptionCrypto[i], dataPhotoCrypto[i])
+            val crypto = Crypto(dataNameCrypto[i], dataTotalSupply[i], dataDescriptionCrypto[i], dataPhotoCrypto[i])
             listCrypto.add(crypto)
         }
         return listCrypto
