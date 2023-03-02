@@ -17,6 +17,7 @@
         <item>Polygon</item>
         <item>Solana</item>
         <item>Polkadot</item>
+        <item>LiteCoin</item>
     </string-array>
     <string-array name="data_description_crypto">
         <item>Bitcoin adalah cryptocurrency terdesentralisasi yang awalnya dijelaskan dalam whitepaper tahun 2008 oleh seseorang, atau sekelompok orang, menggunakan alias Satoshi Nakamoto . Ini diluncurkan segera setelah itu, pada Januari 2009. Bitcoin adalah mata uang online peer-to-peer, artinya semua transaksi terjadi secara langsung antara peserta jaringan yang setara dan independen, tanpa memerlukan perantara untuk mengizinkan atau memfasilitasi mereka. Bitcoin dibuat, menurut kata-kata Nakamoto sendiri, untuk memungkinkan “pembayaran online dikirim langsung dari satu pihak ke pihak lain tanpa melalui lembaga keuangan.”</item>
@@ -28,6 +29,7 @@
         <item>Polygon (sebelumnya Matic Network) adalah platform pertama yang terstruktur dengan baik dan mudah digunakan untuk penskalaan Ethereum dan pengembangan infrastruktur. Komponen intinya adalah Polygon SDK, kerangka kerja modular dan fleksibel yang mendukung pembuatan berbagai jenis aplikasi.</item>
         <item>Solana adalah proyek sumber terbuka yang sangat fungsional yang mengandalkan sifat tanpa izin teknologi blockchain untuk menyediakan solusi keuangan terdesentralisasi ( DeFi ). Sementara ide dan pengerjaan awal proyek dimulai pada tahun 2017, Solana secara resmi diluncurkan pada bulan Maret 2020 oleh Solana Foundation yang berkantor pusat di Jenewa, Swiss.</item>
         <item>Polkadot adalah protokol multichain sharded sumber terbuka yang menghubungkan dan mengamankan jaringan blockchain khusus, memfasilitasi transfer lintas rantai dari data atau jenis aset apa pun, bukan hanya token, sehingga memungkinkan blockchain dapat dioperasikan satu sama lain. Polkadot dirancang untuk memberikan landasan bagi internet blockchain yang terdesentralisasi, juga dikenal sebagai Web3.</item>
+        <item>Litecoin (LTC) adalah mata uang kripto yang dirancang untuk menyediakan pembayaran yang cepat, aman, dan berbiaya rendah dengan memanfaatkan properti unik dari teknologi blockchain . Untuk mempelajari lebih lanjut tentang proyek ini, lihat penyelaman mendalam kami tentang Litecoin . Cryptocurrency dibuat berdasarkan protokol Bitcoin (BTC), tetapi berbeda dalam hal algoritma hashing yang digunakan, hard cap, waktu transaksi blok dan beberapa faktor lainnya. Litecoin memiliki waktu blok hanya 2,5 menit dan biaya transaksi yang sangat rendah, sehingga cocok untuk transaksi mikro dan pembayaran point-of-sale. Litecoin dirilis melalui klien sumber terbuka di GitHub pada 7 Oktober 2011, dan Jaringan Litecoin ditayangkan lima hari kemudian pada 13 Oktober 2011. di antara sepuluh cryptocurrency teratas berdasarkan kapitalisasi pasar untuk sebagian besar keberadaannya. Cryptocurrency dibuat oleh Charlie Lee, mantan karyawan Google, yang menginginkan Litecoin menjadi "bitcoin versi lite," karena menampilkan banyak properti yang sama dengan Bitcoin — meskipun bobotnya lebih ringan.</item>
     </string-array>
     <string-array name="data_photo_crypto">
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/1.png</item>
@@ -39,5 +41,6 @@
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png</item>
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png</item>
         <item>https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png</item>
+        <item>https://s2.coinmarketcap.com/static/img/coins/64x64/2.png</item>
     </string-array>
 </resources>
