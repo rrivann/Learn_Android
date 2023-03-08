@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.commit
 import com.dicoding.myflexiblefragment.databinding.FragmentHomeBinding
 
 
@@ -25,18 +26,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.btn_category){
+        if (v?.id == R.id.btn_category) {
             val mCategoryFragment = CategoryFragment()
             val mFragmentManager = parentFragmentManager
 
-            mFragmentManager.beginTransaction().apply {
+            mFragmentManager.commit {
+                addToBackStack(null)
                 replace(
                     R.id.frame_container,
                     mCategoryFragment,
                     CategoryFragment::class.java.simpleName
                 )
-                addToBackStack(null)
-                commit()
             }
         }
     }
