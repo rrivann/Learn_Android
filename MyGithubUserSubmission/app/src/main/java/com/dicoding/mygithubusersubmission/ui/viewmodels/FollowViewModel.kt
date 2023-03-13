@@ -25,7 +25,7 @@ class FollowViewModel : ViewModel() {
     private val _listFollowing = MutableLiveData<List<ListFollowerUserResponseData>?>()
     val listFollowing: LiveData<List<ListFollowerUserResponseData>?> = _listFollowing
 
-    fun getFollowersUser(username: String) {
+    fun getFollowersUser(username: String?) {
         _isLoadingFollow.value = true
         val client = ApiConfig.getApiService().getFollowersUser(username)
         client.enqueue(object : Callback<List<ListFollowerUserResponseData>> {
@@ -51,7 +51,7 @@ class FollowViewModel : ViewModel() {
     }
 
 
-    fun getFollowingUser(username: String) {
+    fun getFollowingUser(username: String?) {
         _isLoadingFollow.value = true
         val client = ApiConfig.getApiService().getFollowingUser(username)
         client.enqueue(object : Callback<List<ListFollowerUserResponseData>> {

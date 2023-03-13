@@ -17,7 +17,7 @@ import com.dicoding.mygithubusersubmission.ui.viewmodels.FollowViewModel
 class FollowFragment : Fragment() {
 
     private var _binding: FragmentFollowBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val followViewModel: FollowViewModel by viewModels()
     private var username: String? = null
     private var position: Int? = 0
@@ -25,9 +25,9 @@ class FollowFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFollowBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,36 +40,34 @@ class FollowFragment : Fragment() {
         followViewModel.isLoadingFollow.observe(viewLifecycleOwner) { showLoadingFollow(it) }
 
         if (position == 1) {
-            followViewModel.getFollowersUser(username!!)
-            followViewModel.listFollowers.observe(viewLifecycleOwner) { showFollowUser(it!!) }
+            followViewModel.getFollowersUser(username)
+            followViewModel.listFollowers.observe(viewLifecycleOwner) { showFollowUser(it) }
         } else {
-            followViewModel.getFollowingUser(username!!)
-            followViewModel.listFollowing.observe(viewLifecycleOwner) { showFollowUser(it!!) }
+            followViewModel.getFollowingUser(username)
+            followViewModel.listFollowing.observe(viewLifecycleOwner) { showFollowUser(it) }
         }
 
     }
 
 
-    private fun showFollowUser(listFollow: List<ListFollowerUserResponseData>) {
+    private fun showFollowUser(listFollow: List<ListFollowerUserResponseData>?) {
         val layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvFollow.layoutManager = layoutManager
+        binding?.rvFollow?.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-        binding.rvFollow.addItemDecoration(itemDecoration)
+        binding?.rvFollow?.addItemDecoration(itemDecoration)
 
-        val adapter = FollowAdapter(listFollow) {
-            val moveIntent = Intent(activity, DetailActivity::class.java)
-            moveIntent.putExtra(DetailActivity.USERNAME, it.login)
-            startActivity(moveIntent)
+        val adapter = listFollow?.let { list ->
+            FollowAdapter(list) {
+                val moveIntent = Intent(activity, DetailActivity::class.java)
+                moveIntent.putExtra(DetailActivity.USERNAME, it.login)
+                startActivity(moveIntent)
+            }
         }
-        binding.rvFollow.adapter = adapter
+        binding?.rvFollow?.adapter = adapter
     }
 
     private fun showLoadingFollow(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.INVISIBLE
-        }
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }

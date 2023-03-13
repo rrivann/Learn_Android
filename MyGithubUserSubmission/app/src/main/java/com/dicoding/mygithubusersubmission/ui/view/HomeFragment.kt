@@ -19,7 +19,7 @@ import com.dicoding.mygithubusersubmission.ui.viewmodels.MainViewModel
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +30,9 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                mainViewModel.searchGithubUser(query!!)
+                mainViewModel.searchGithubUser(query)
                 searchView.clearFocus()
                 return true
             }
@@ -68,9 +68,9 @@ class HomeFragment : Fragment() {
 
     private fun showSearchUser(githubUser: List<GithubUserData>) {
         val layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvUser.layoutManager = layoutManager
+        binding?.rvUser?.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-        binding.rvUser.addItemDecoration(itemDecoration)
+        binding?.rvUser?.addItemDecoration(itemDecoration)
 
         val adapter = GithubAdapter(githubUser) {
             val moveIntent = Intent(activity, DetailActivity::class.java)
@@ -78,14 +78,10 @@ class HomeFragment : Fragment() {
             startActivity(moveIntent)
         }
 
-        binding.rvUser.adapter = adapter
+        binding?.rvUser?.adapter = adapter
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.INVISIBLE
-        }
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.INVISIBLE
     }
 }

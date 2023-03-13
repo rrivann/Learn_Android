@@ -8,7 +8,7 @@ import com.dicoding.mygithubusersubmission.ui.view.DetailActivity
 import com.dicoding.mygithubusersubmission.ui.view.FollowFragment
 
 class FollowTabAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
-    var username: String = ""
+    var username: String? = null
 
     override fun getItemCount(): Int = 2
 

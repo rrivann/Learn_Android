@@ -17,26 +17,15 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val mainViewModel: MainViewModel by viewModels()
 
-    companion object {
-        const val USERNAME = "username_detail"
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-        const val ARG_USERNAME_TAB = "username_tab"
-        const val ARG_SECTION_NUMBER = "section_number"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = "Detail Github User"
-        supportActionBar?.elevation = 0f
+        supportActionBar?.title = getString(R.string.title_action_bar_detail)
 
         val username = intent.getStringExtra(USERNAME)
-        mainViewModel.getDetailUser(username!!)
+        mainViewModel.getDetailUser(username)
         mainViewModel.isLoading.observe(this) { showLoading(it) }
         mainViewModel.detailUser.observe(this) { setDetailUser(it) }
 
@@ -60,11 +49,16 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.INVISIBLE
-        }
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    companion object {
+        const val USERNAME = "username_detail"
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
+        const val ARG_USERNAME_TAB = "username_tab"
+        const val ARG_SECTION_NUMBER = "section_number"
+    }
 }

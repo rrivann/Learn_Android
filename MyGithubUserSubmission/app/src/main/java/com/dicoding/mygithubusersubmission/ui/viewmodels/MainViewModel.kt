@@ -25,7 +25,7 @@ class MainViewModel : ViewModel() {
     private val _detailUser = MutableLiveData<DetailUserResponse?>()
     val detailUser: LiveData<DetailUserResponse?> = _detailUser
 
-    fun searchGithubUser(query: String) {
+    fun searchGithubUser(query: String?) {
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().getSearchUser(query)
@@ -52,7 +52,7 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    fun getDetailUser(username: String) {
+    fun getDetailUser(username: String?) {
         _isLoading.value = true
 
         val client = ApiConfig.getApiService().getDetailUser(username)
