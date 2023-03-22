@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e3bf460d-3cf5-4912-a972-f5a87ea458ce" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MyDataStore/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/app/src/main/java/com/dicoding/mydatastore/MainViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/app/src/main/java/com/dicoding/mydatastore/SettingPreferences.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyDataStore/app/src/main/java/com/dicoding/mydatastore/ViewModelFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/database/Note.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/database/NoteDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/database/NoteRoomDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/helper/DateHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/helper/NoteDiffCallback.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/repository/NoteRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/ui/adapter/NoteAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/ui/main/NoteAddUpdateActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/ui/viewmodels/MainViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/ui/viewmodels/NoteAddUpdateViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/java/com/dicoding/mynoteappsuseroom/ui/viewmodels/ViewModelFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/res/drawable/ic_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/res/drawable/ic_clear.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/res/layout/activity_note_add_update.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/res/layout/item_note.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNoteAppsUseRoom/app/src/main/res/menu/menu_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/NoteAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/NoteAddUpdateActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/db/DatabaseContract.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/db/DatabaseHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/db/NoteHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/entity/Note.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/java/com/dicoding/mynotesapp/helper/MappingHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/res/drawable/ic_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/res/drawable/ic_clear.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/res/layout/activity_note_add_update.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/res/layout/item_note.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyNotesApp/app/src/main/res/menu/menu_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/app/src/main/java/com/dicoding/myreadwritefile/FileHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/app/src/main/java/com/dicoding/myreadwritefile/FileModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyReadWriteFile/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySettingPreference/app/src/main/java/com/dicoding/mysettingpreference/MyPreferenceFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySettingPreference/app/src/main/res/xml/preferences.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySharedPreferences/app/src/main/java/com/dicoding/mysharedpreferences/FormUserPreferenceActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySharedPreferences/app/src/main/java/com/dicoding/mysharedpreferences/UserModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySharedPreferences/app/src/main/java/com/dicoding/mysharedpreferences/UserPreference.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MySharedPreferences/app/src/main/res/layout/activity_form_user_preference.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ProjectId" id="2N7emqc0LCA082Vme6FxHxd6EDn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/Users/macuser/Documents/Project/GitHub/Learn_Android",
+    "settings.editor.selected.configurable": "editor.preferences.import"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e3bf460d-3cf5-4912-a972-f5a87ea458ce" name="Changes" comment="" />
+      <created>1679019709671</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679019709671</updated>
+    </task>
+    <servers />
+  </component>
+</project>
