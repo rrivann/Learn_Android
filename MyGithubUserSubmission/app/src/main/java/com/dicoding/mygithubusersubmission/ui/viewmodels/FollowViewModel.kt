@@ -4,13 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.mygithubusersubmission.database.UserRepository
 import com.dicoding.mygithubusersubmission.repository.api.ApiConfig
 import com.dicoding.mygithubusersubmission.repository.response.ListFollowerUserResponseData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowViewModel : ViewModel() {
+class FollowViewModel  : ViewModel() {
 
     companion object {
         private const val TAG = "FollowViewModel"
@@ -75,6 +76,5 @@ class FollowViewModel : ViewModel() {
             }
         })
     }
-
 
 }

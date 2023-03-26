@@ -43,5 +43,4 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
-
 </navigation>

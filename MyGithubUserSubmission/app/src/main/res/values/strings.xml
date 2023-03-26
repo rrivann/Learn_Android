@@ -5,8 +5,12 @@
     <string name="title_action_bar_home">Github User</string>
     <string name="title_action_bar_detail">Detail Github User</string>
     <string name="search_hint">Search Username</string>
+    <string name="favorite_hint">Favorite User</string>
     <string name="followers">%d Followers</string>
     <string name="following">%d Following</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="setting">Setting</string>
+
 </resources>

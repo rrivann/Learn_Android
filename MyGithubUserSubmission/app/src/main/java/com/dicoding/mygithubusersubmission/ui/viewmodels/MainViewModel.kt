@@ -1,14 +1,18 @@
 package com.dicoding.mygithubusersubmission.ui.viewmodels
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.widget.Toast
+import androidx.lifecycle.*
+import com.dicoding.mygithubusersubmission.helper.SettingPreferences
 import com.dicoding.mygithubusersubmission.repository.api.ApiConfig
 import com.dicoding.mygithubusersubmission.repository.response.*
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainViewModel : ViewModel() {
 
@@ -77,4 +81,5 @@ class MainViewModel : ViewModel() {
             }
         })
     }
+
 }

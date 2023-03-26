@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.mygithubusersubmission.databinding.FragmentFollowBinding
+import com.dicoding.mygithubusersubmission.helper.ViewModelFactory
 import com.dicoding.mygithubusersubmission.repository.response.ListFollowerUserResponseData
 import com.dicoding.mygithubusersubmission.ui.adapter.FollowAdapter
 import com.dicoding.mygithubusersubmission.ui.viewmodels.FollowViewModel
