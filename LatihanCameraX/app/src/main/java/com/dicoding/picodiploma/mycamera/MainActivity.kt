@@ -222,7 +222,6 @@ class MainActivity : AppCompatActivity() {
         } while (streamLength > 1000000)
         bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
         return file
-
     }
 
 }
