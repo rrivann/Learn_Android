@@ -1,22 +1,28 @@
 package com.dicoding.storyappsubmission.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadState
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.storyappsubmission.adapter.StoryListAdapter
-import com.dicoding.storyappsubmission.database.local.entity.StoryEntity
+import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.storyappsubmission.R
+import com.dicoding.storyappsubmission.data.local.entity.StoryEntity
 import com.dicoding.storyappsubmission.databinding.FragmentHomeBinding
+import com.dicoding.storyappsubmission.ui.home.HomeActivity.Companion.EXTRA_TOKEN
 import com.dicoding.storyappsubmission.ui.main.MainActivity
+import com.dicoding.storyappsubmission.ui.map.MapsActivity
 import dagger.hilt.android.AndroidEntryPoint
-import  com.dicoding.storyappsubmission.utils.Result
-import com.dicoding.storyappsubmission.utils.showLoading
 
 @AndroidEntryPoint
 @ExperimentalPagingApi
@@ -28,12 +34,16 @@ class HomeFragment : Fragment() {
     private var token: String = ""
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private lateinit var rvStory: RecyclerView
+    private lateinit var listAdapter: StoryListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -43,6 +53,7 @@ class HomeFragment : Fragment() {
         token = requireActivity().intent.getStringExtra(MainActivity.EXTRA_TOKEN) ?: ""
 
         setSwipeRefreshLayout()
+        showListStory()
         getAllStories()
     }
 
@@ -50,6 +61,25 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.options_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.maps -> {
+                val intent = Intent(activity, MapsActivity::class.java)
+                intent.putExtra(EXTRA_TOKEN, token)
+                startActivity(intent)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     private fun setSwipeRefreshLayout() {
         binding.swipeRefresh.setOnRefreshListener {
@@ -59,38 +89,40 @@ class HomeFragment : Fragment() {
 
     private fun getAllStories() {
         homeViewModel.getAllStories(token).observe(viewLifecycleOwner) { result ->
-            if (result != null) when (result) {
-                is Result.Loading -> {
-                    showLoading(true, binding.progressBar)
-                    binding.swipeRefresh.isRefreshing = true
-                }
-                is Result.Success -> {
-                    showLoading(false, binding.progressBar)
-                    binding.swipeRefresh.isRefreshing = false
-                    homeViewModel.getListStoryDatabase().observe(viewLifecycleOwner) { listStory ->
-                        showListStory(listStory)
-                    }
-                }
-                is Result.Error -> {
-                    binding.swipeRefresh.isRefreshing = false
-                    showLoading(false, binding.progressBar)
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
-                        .show()
-
-                }
-            }
+            updateRecyclerViewData(result)
         }
     }
 
-    private fun showListStory(listStory: List<StoryEntity>) {
-        val layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvStory.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
-        binding.rvStory.addItemDecoration(itemDecoration)
+    private fun showListStory() {
+        val linearLayoutManager = LinearLayoutManager(requireActivity())
+        listAdapter = StoryListAdapter()
 
-        val adapter = StoryListAdapter(listStory)
+        listAdapter.addLoadStateListener { loadState ->
+            binding.swipeRefresh.isRefreshing = loadState.source.refresh is LoadState.Loading
+        }
 
-        binding.rvStory.adapter = adapter
+//      SETUP ADAPTER
+        try {
+            val itemDecoration =
+                DividerItemDecoration(requireActivity(), linearLayoutManager.orientation)
+            rvStory = binding.rvStory
+            rvStory.apply {
+                adapter = listAdapter.withLoadStateFooter(
+                    footer = LoadingStateAdapter {
+                        listAdapter.retry()
+                    }
+                )
+                layoutManager = linearLayoutManager
+                addItemDecoration(itemDecoration)
+            }
+        } catch (e: NullPointerException) {
+            e.printStackTrace()
+        }
+
+    }
+
+    private fun updateRecyclerViewData(listStory: PagingData<StoryEntity>) {
+        listAdapter.submitData(lifecycle, listStory)
     }
 
 }

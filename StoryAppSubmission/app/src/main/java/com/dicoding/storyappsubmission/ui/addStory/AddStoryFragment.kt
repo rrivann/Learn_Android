@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import com.dicoding.storyappsubmission.R
 import com.dicoding.storyappsubmission.utils.*
 import kotlinx.coroutines.launch
@@ -35,6 +36,7 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 
 @AndroidEntryPoint
+@ExperimentalPagingApi
 class AddStoryFragment : Fragment() {
 
     private var _binding: FragmentAddstoryBinding? = null
@@ -111,37 +113,41 @@ class AddStoryFragment : Fragment() {
             )
             if (descriptionBlank) binding.etDescription.error =
                 getString(R.string.desc_empty_field_error) else {
-                addStoryViewModel.addStory(token, imageMultipart, description, null, null)
-                    .observe(requireActivity()) { result ->
-                        if (result != null) when (result) {
-                            is Result.Loading -> {
-                                showLoading(true, binding.progressBar)
-                            }
-                            is Result.Success -> {
-                                showLoading(false, binding.progressBar)
-                                Toast.makeText(
-                                    requireContext(),
-                                    R.string.story_upload,
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                                getFile = null
-                                binding.etDescription.text.clear()
-                                val navController = findNavController()
-                                navController.navigate(R.id.navigation_home)
+                lifecycleScope.launch {
+                    addStoryViewModel.addStory(token, imageMultipart, description, null, null)
+                        .collect { result ->
+                            when (result) {
+                                is Result.Loading -> {
+                                    showLoading(true, binding.progressBar)
+                                }
 
-                            }
-                            is Result.Error -> {
-                                showLoading(false, binding.progressBar)
-                                Toast.makeText(
-                                    requireContext(),
-                                    R.string.story_upload_failed,
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
+                                is Result.Success -> {
+                                    showLoading(false, binding.progressBar)
+                                    Toast.makeText(
+                                        requireContext(),
+                                        R.string.story_upload,
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                    getFile = null
+                                    binding.etDescription.text.clear()
+                                    val navController = findNavController()
+                                    navController.navigate(R.id.navigation_home)
+
+                                }
+
+                                is Result.Error -> {
+                                    showLoading(false, binding.progressBar)
+                                    Toast.makeText(
+                                        requireContext(),
+                                        R.string.story_upload_failed,
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                }
                             }
                         }
-                    }
+                }
             }
         } else {
             Toast.makeText(
@@ -160,7 +166,7 @@ class AddStoryFragment : Fragment() {
             val myFile =
                 it.data?.getSerializableExtra("picture")
                         as File
-             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
             val result = rotateBitmap(
                 BitmapFactory.decodeFile(myFile.path),
@@ -177,8 +183,6 @@ class AddStoryFragment : Fragment() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
-//            getFile = myFile
 
             binding.previewImageView.setImageBitmap(result)
         }
@@ -227,5 +231,4 @@ class AddStoryFragment : Fragment() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
-
 }

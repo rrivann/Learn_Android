@@ -1,6 +1,5 @@
 package com.dicoding.storyappsubmission.utils.customView
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.Editable
@@ -51,7 +50,6 @@ class PasswordEditText : AppCompatEditText {
         })
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (compoundDrawables[0] != null && event.action == MotionEvent.ACTION_UP) {
             val leftDrawableWidth = compoundDrawables[0].bounds.width()

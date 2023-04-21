@@ -20,11 +20,8 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="logout_message_success">Logged out successfully</string>
-    <string name="retry">Retry</string>
-    <string name="loading_error_message">Unable to fetch stories data</string>
     <string name="stories_not_found_error">Stories not found</string>
     <string name="person_with_paper_illustration">Person with paper illustration</string>
-    <string name="full_name">Full name</string>
     <string name="et_email_error_message">Email address is not valid</string>
     <string name="et_password_error_message">Passwords must be at least 8 characters</string>
     <string name="registration_error_message">Registration failed, please try again.</string>
@@ -44,13 +41,13 @@
     <string name="story_upload_failed">Story upload failed</string>
     <string name="story_upload">Story uploaded</string>
     <string name="language_setting">Language Setting</string>
-    <string name="setting">Setting</string>
     <string name="description">Description : %s</string>
     <string name="action_detail">Detail Story</string>
     <string name="profile">Profile</string>
     <string name="appwidget_text">STORY BANNER</string>
-    <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
     <string name="empty_text">NO DATA</string>
-
+    <string name="retry">Try Again</string>
+    <string name="title_map">Maps</string>
+    <string name="active_gps_message">Please activate your location services\n</string>
 </resources>

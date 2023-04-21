@@ -10,11 +10,13 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.paging.ExperimentalPagingApi
 import com.dicoding.storyappsubmission.databinding.ActivityCameraBinding
 import com.dicoding.storyappsubmission.ui.addStory.AddStoryFragment
 import com.dicoding.storyappsubmission.utils.setupViewFullScreen
 import com.dicoding.storyappsubmission.utils.createFile
 
+@ExperimentalPagingApi
 class CameraActivity : AppCompatActivity() {
 
     private var _binding: ActivityCameraBinding? = null

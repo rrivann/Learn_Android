@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dicoding.storyappsubmission.R
 import com.dicoding.storyappsubmission.databinding.ActivityLoginBinding
 import com.dicoding.storyappsubmission.ui.home.HomeActivity
@@ -16,6 +17,8 @@ import com.dicoding.storyappsubmission.utils.Result
 import com.dicoding.storyappsubmission.utils.setupViewFullScreen
 import com.dicoding.storyappsubmission.utils.showLoading
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -44,34 +47,48 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        loginViewModel.userLogin(email, password).observe(this) { result ->
-            if (result != null) when (result) {
-                is Result.Loading -> {
-                    showLoading(true, binding.progressBar)
-                }
-                is Result.Success -> {
-                    showLoading(false, binding.progressBar)
-                    Toast.makeText(this, R.string.login_success_message, Toast.LENGTH_SHORT).show()
-                    result.data.loginResult?.token?.let { token ->
-                        loginViewModel.saveAuthToken(token)
-                        result.data.loginResult.name?.let {
-                            loginViewModel.saveAuthProfile(
-                                email,
-                                it
-                            )
-                        }
-                        Intent(this, HomeActivity::class.java).also { intent ->
-                            intent.putExtra(EXTRA_TOKEN, token)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            startActivity(intent)
-                            finish()
+        lifecycleScope.launch {
+
+            loginViewModel.userLogin(email, password).collect { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        showLoading(true, binding.progressBar)
+                    }
+
+                    is Result.Success -> {
+                        showLoading(false, binding.progressBar)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            R.string.login_success_message,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        result.data.loginResult?.token?.let { token ->
+                            loginViewModel.saveAuthToken(token)
+                            result.data.loginResult.name?.let {
+                                loginViewModel.saveAuthProfile(
+                                    email,
+                                    it
+                                )
+                            }
+                            Intent(this@LoginActivity, HomeActivity::class.java).also { intent ->
+                                intent.putExtra(EXTRA_TOKEN, token)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
-                }
-                is Result.Error -> {
-                    showLoading(false, binding.progressBar)
-                    Toast.makeText(this, R.string.login_error_message, Toast.LENGTH_SHORT)
-                        .show()
+
+                    is Result.Error -> {
+                        showLoading(false, binding.progressBar)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            R.string.login_error_message,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
                 }
             }
         }

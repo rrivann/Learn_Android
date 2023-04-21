@@ -20,11 +20,8 @@
     <string name="yes">Ya</string>
     <string name="cancel">Membatalkan</string>
     <string name="logout_message_success">Keluar berhasil</string>
-    <string name="retry">Mencoba kembali</string>
-    <string name="loading_error_message">Tidak dapat mengambil data cerita</string>
     <string name="stories_not_found_error">Cerita tidak ditemukan</string>
     <string name="person_with_paper_illustration">Orang dengan ilustrasi kertas</string>
-    <string name="full_name">Nama lengkap</string>
     <string name="et_email_error_message">Alamat email tidak valid</string>
     <string name="et_password_error_message">Kata sandi harus minimal 8 karakter</string>
     <string name="registration_error_message">Pendaftaran gagal, silakan coba lagi.</string>
@@ -44,12 +41,14 @@
     <string name="story_upload_failed">Pengunggahan cerita gagal</string>
     <string name="story_upload">Cerita diunggah</string>
     <string name="language_setting">Pengaturan bahasa</string>
-    <string name="setting">Pengaturan</string>
     <string name="description">Keterangan : %s</string>
     <string name="action_detail">Detail Cerita</string>
     <string name="profile">Profil</string>
     <string name="appwidget_text">CERITA SPANDUK</string>
-    <string name="add_widget">menambah widget</string>
     <string name="empty_text">TIDAK ADA DATA</string>
     <string name="app_widget_description">ini adalah deskripsi widget aplikasi</string>
+    <string name="retry">Coba lagi</string>
+    <string name="title_map">Peta</string>
+    <string name="active_gps_message">Tolong hidupkan akses lokasi</string>
+
 </resources>

@@ -1,7 +1,7 @@
 package com.dicoding.storyappsubmission.di
 
-import com.dicoding.storyappsubmission.database.remote.api.ApiConfig
-import com.dicoding.storyappsubmission.database.remote.api.ApiService
+import com.dicoding.storyappsubmission.data.remote.api.ApiConfig
+import com.dicoding.storyappsubmission.data.remote.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

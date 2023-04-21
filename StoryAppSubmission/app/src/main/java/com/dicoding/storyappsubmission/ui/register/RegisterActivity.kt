@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.dicoding.storyappsubmission.R
 import com.dicoding.storyappsubmission.databinding.ActivityRegisterBinding
 import com.dicoding.storyappsubmission.ui.login.LoginActivity
@@ -15,6 +16,8 @@ import com.dicoding.storyappsubmission.utils.setupViewFullScreen
 import dagger.hilt.android.AndroidEntryPoint
 import com.dicoding.storyappsubmission.utils.Result
 import com.dicoding.storyappsubmission.utils.showLoading
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -46,22 +49,35 @@ class RegisterActivity : AppCompatActivity() {
         val password = binding.passwordEditText.text.toString()
 
 
-        registerViewModel.userRegister(name, email, password).observe(this) { result ->
-            if (result != null) when (result) {
-                is Result.Loading -> {
-                    showLoading(true, binding.progressBar)
-                }
-                is Result.Success -> {
-                    showLoading(false, binding.progressBar)
-                    Toast.makeText(this, R.string.registration_success, Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                is Result.Error -> {
-                    showLoading(false, binding.progressBar)
-                    Toast.makeText(this, R.string.registration_error_message, Toast.LENGTH_SHORT)
-                        .show()
+        lifecycleScope.launch {
+            registerViewModel.userRegister(name, email, password).collect { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        showLoading(true, binding.progressBar)
+                    }
+
+                    is Result.Success -> {
+                        showLoading(false, binding.progressBar)
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            R.string.registration_success,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    is Result.Error -> {
+                        showLoading(false, binding.progressBar)
+                        Toast.makeText(
+                            this@RegisterActivity,
+                            R.string.registration_error_message,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
                 }
             }
         }

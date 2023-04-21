@@ -1,7 +1,7 @@
 package com.dicoding.storyappsubmission.ui.splash
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.storyappsubmission.repository.AuthRepository
+import com.dicoding.storyappsubmission.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

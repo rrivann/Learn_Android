@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.dicoding.storyappsubmission.database.local.AuthPreferences
-import com.dicoding.storyappsubmission.database.local.ProfilePreferences
+import com.dicoding.storyappsubmission.data.local.preferences.AuthPreferences
+import com.dicoding.storyappsubmission.data.local.preferences.ProfilePreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

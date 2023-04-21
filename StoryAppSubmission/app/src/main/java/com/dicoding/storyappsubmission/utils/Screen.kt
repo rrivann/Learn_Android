@@ -7,7 +7,6 @@ import android.view.WindowManager
 import androidx.appcompat.app.ActionBar
 
 fun setupViewFullScreen(window: Window, supportActionBar: ActionBar?) {
-    @Suppress("DEPRECATION")
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         window.insetsController?.hide(WindowInsets.Type.statusBars())
     } else {
