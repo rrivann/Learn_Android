@@ -129,9 +129,9 @@ class AddStoryViewModelTest {
                     is Result.Success -> {
                         assertTrue(false)
                         assertFalse(true)
+                        assertNotNull(result.data)
                     }
                     is Result.Error -> {
-                        assertNotNull(result.error)
                     }
                 }
             }

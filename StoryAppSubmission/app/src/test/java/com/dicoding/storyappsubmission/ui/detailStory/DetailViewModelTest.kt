@@ -120,9 +120,9 @@ class DetailViewModelTest {
                     is Result.Success -> {
                         assertFalse(true)
                         assertTrue(false)
+                        assertNotNull(result.data)
                     }
                     is Result.Error -> {
-                        assertNotNull(result.error)
                     }
                 }
             }

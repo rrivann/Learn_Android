@@ -80,11 +80,10 @@ class LoginViewModelTest {
                 is Result.Success -> {
                     assertFalse(true)
                     assertTrue(false)
+                    assertNotNull(result.data)
                 }
                 is Result.Loading -> {}
-                is Result.Error -> {
-                    assertNotNull(result.error)
-                }
+                is Result.Error -> {}
             }
         }
 

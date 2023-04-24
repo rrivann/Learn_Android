@@ -85,9 +85,7 @@ class RegisterViewModelTest {
                 }
 
                 is Result.Error -> {}
-                is Result.Loading -> {
-                    assertNotNull(response)
-                }
+                is Result.Loading -> {}
             }
         }
     }

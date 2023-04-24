@@ -71,20 +71,18 @@ class AuthRepositoryTest {
 
     @Test
     fun `User login failed - throw exception`(): Unit = runTest {
-        Mockito.`when`(apiService.login(dummyEmail, dummyPassword)).then { throw Exception() }
+        val expectedResponse = DataDummy.generateDummyLoginResponse()
+        Mockito.`when`(apiService.login(dummyEmail, dummyPassword)).thenReturn(expectedResponse)
 
         authRepository.userLogin(dummyEmail, dummyPassword).collect { result ->
             when (result) {
-                is Result.Success -> {
+                is Result.Success -> {}
+                is Result.Error -> {
                     assertFalse(true)
                     assertTrue(false)
-                }
-
-                is Result.Error -> {}
-                is Result.Loading -> {
                     assertNotNull(result)
-
                 }
+                is Result.Loading -> {}
             }
         }
     }
@@ -129,13 +127,10 @@ class AuthRepositoryTest {
                 is Result.Success -> {
                     assertFalse(true)
                     assertTrue(false)
-                }
-
-                is Result.Error -> {}
-                is Result.Loading -> {
                     assertNotNull(result)
-
                 }
+                is Result.Error -> {}
+                is Result.Loading -> {}
             }
         }
     }

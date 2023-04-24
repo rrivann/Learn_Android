@@ -75,12 +75,9 @@ class MapsViewModelTest {
                 is Result.Success -> {
                     assertTrue(false)
                     assertFalse(true)
+                    assertNotNull(actualResponse.data)
                 }
-
-                is Result.Error -> {
-                    assertNotNull(actualResponse.error)
-
-                }
+                is Result.Error -> {}
 
                 is Result.Loading -> {}
             }

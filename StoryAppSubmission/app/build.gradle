@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id("com.google.dagger.hilt.android")
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
@@ -38,6 +38,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -58,6 +61,8 @@ dependencies {
     implementation 'androidx.room:room-paging:2.5.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation project(path: ':app')
     kapt 'androidx.room:room-compiler:2.5.1'
     implementation 'androidx.room:room-paging:2.6.0-alpha01'
 
@@ -102,6 +107,24 @@ dependencies {
 //  SPECIAL TESTING
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4" //TestDispatcher
     testImplementation "androidx.arch.core:core-testing:2.2.0" // InstantTaskExecutorRule
+
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4" //TestDispatcher
+    androidTestImplementation "androidx.arch.core:core-testing:2.2.0" // InstantTaskExecutorRule
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'//IntentsTe
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1' // stRule
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
+
+
+//  HILT TESTING
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.41'
+
+//  TestCoroutineDispatcher
+    debugImplementation "androidx.fragment:fragment-testing:1.5.6" //launchFragmentInContainer
+
+//  MOCK WEB SERVER
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
+    androidTestImplementation "com.squareup.okhttp3:okhttp-tls:4.9.3"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

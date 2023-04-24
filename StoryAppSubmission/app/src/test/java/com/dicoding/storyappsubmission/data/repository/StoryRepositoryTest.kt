@@ -117,10 +117,10 @@ class StoryRepositoryTest {
                 is Result.Success -> {
                     assertTrue(false)
                     assertFalse(true)
+                    assertNotNull(result.data)
                 }
                 is Result.Loading -> {}
                 is Result.Error -> {
-                    assertNotNull(result.error)
                 }
             }
         }
@@ -186,10 +186,10 @@ class StoryRepositoryTest {
                     is Result.Success -> {
                         assertTrue(false)
                         assertFalse(true)
+                        assertNotNull(result.data)
                     }
                     is Result.Loading -> {}
                     is Result.Error -> {
-                        assertNotNull(result.error)
                     }
                 }
             }

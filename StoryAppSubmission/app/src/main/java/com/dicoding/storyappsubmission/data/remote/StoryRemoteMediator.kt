@@ -9,6 +9,7 @@ import com.dicoding.storyappsubmission.data.local.entity.RemoteKeys
 import com.dicoding.storyappsubmission.data.local.entity.StoryEntity
 import com.dicoding.storyappsubmission.data.local.room.StoryDatabase
 import com.dicoding.storyappsubmission.data.remote.api.ApiService
+import com.dicoding.storyappsubmission.utils.wrapEspressoIdlingResource
 
 @OptIn(ExperimentalPagingApi::class)
 class StoryRemoteMediator(
@@ -43,42 +44,43 @@ class StoryRemoteMediator(
             }
         }
 
+        wrapEspressoIdlingResource {
+            try {
+                val responseData =
+                    apiService.getAllStory(token, page, state.config.pageSize)
+                val endOfPaginationReached = responseData.listStory.isEmpty()
 
-        return try {
-            val responseData =
-                apiService.getAllStory(token, page, state.config.pageSize)
-            val endOfPaginationReached = responseData.listStory.isEmpty()
+                database.withTransaction {
+                    if (loadType == LoadType.REFRESH) {
+                        database.remoteKeysDao().deleteRemoteKeys()
+                        database.storyDao().deleteAll()
+                    }
 
-            database.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    database.remoteKeysDao().deleteRemoteKeys()
-                    database.storyDao().deleteAll()
+                    val prevKey = if (page == 1) null else page - 1
+                    val nextKey = if (endOfPaginationReached) null else page + 1
+                    val keys = responseData.listStory.map {
+                        RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
+                    }
+                    database.remoteKeysDao().insertAll(keys)
+
+
+                    responseData.listStory.forEach { storyResponseItem ->
+                        val story = StoryEntity(
+                            storyResponseItem.id,
+                            storyResponseItem.name,
+                            storyResponseItem.description,
+                            storyResponseItem.createdAt,
+                            storyResponseItem.photoUrl,
+                            storyResponseItem.lon,
+                            storyResponseItem.lat
+                        )
+                        database.storyDao().insertStory(story)
+                    }
                 }
-
-                val prevKey = if (page == 1) null else page - 1
-                val nextKey = if (endOfPaginationReached) null else page + 1
-                val keys = responseData.listStory.map {
-                    RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
-                }
-                database.remoteKeysDao().insertAll(keys)
-
-
-                responseData.listStory.forEach { storyResponseItem ->
-                    val story = StoryEntity(
-                        storyResponseItem.id,
-                        storyResponseItem.name,
-                        storyResponseItem.description,
-                        storyResponseItem.createdAt,
-                        storyResponseItem.photoUrl,
-                        storyResponseItem.lon,
-                        storyResponseItem.lat
-                    )
-                    database.storyDao().insertStory(story)
-                }
+                return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            } catch (exception: Exception) {
+                return MediatorResult.Error(exception)
             }
-            MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
-        } catch (exception: Exception) {
-            MediatorResult.Error(exception)
         }
     }
 

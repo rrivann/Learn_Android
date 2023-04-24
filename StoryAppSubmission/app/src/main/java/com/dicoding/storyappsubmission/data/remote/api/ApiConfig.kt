@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object {
+        var BASE_URL_MOCK: String? = null
         fun getApiService(): ApiService {
 
             val loggingInterceptor = if (BuildConfig.DEBUG) {
@@ -21,7 +22,7 @@ class ApiConfig {
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor).build()
 
-            val retrofit = Retrofit.Builder().baseUrl(API_BASE_URL)
+            val retrofit = Retrofit.Builder().baseUrl(BASE_URL_MOCK ?: API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()).client(client).build()
 
             return retrofit.create(ApiService::class.java)
