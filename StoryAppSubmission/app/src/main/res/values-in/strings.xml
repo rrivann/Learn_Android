@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">StoryAppSubmission</string>
+    <string name="message_main_page">Selamat data di CeritaApp.</string>
+    <string name="copyright">© 2023 Rivan Proyek</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="logout">Keluar</string>
+    <string name="name">Nama</string>
+    <string name="name_profile">Nama: %s</string>
+    <string name="email">Email</string>
+    <string name="email_profile">Email: %s</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login_desc">Untuk membuat cerita Anda di CeritaApp</string>
+    <string name="register_desc">Buat akun untuk memasukkan cerita Anda di CeritaApp</string>
+    <string name="title_home">Cerita</string>
+    <string name="title_addStory">Tambah Cerita</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="logout_dialog_title">Apa kamu yakin?</string>
+    <string name="logout_dialog_message">Anda harus login lagi setelah logout</string>
+    <string name="yes">Ya</string>
+    <string name="cancel">Membatalkan</string>
+    <string name="logout_message_success">Keluar berhasil</string>
+    <string name="stories_not_found_error">Cerita tidak ditemukan</string>
+    <string name="person_with_paper_illustration">Orang dengan ilustrasi kertas</string>
+    <string name="et_email_error_message">Alamat email tidak valid</string>
+    <string name="et_password_error_message">Kata sandi harus minimal 8 karakter</string>
+    <string name="registration_error_message">Pendaftaran gagal, silakan coba lagi.</string>
+    <string name="registration_success">Registrasi berhasil</string>
+    <string name="login_error_message">Masuk gagal, silakan coba lagi.</string>
+    <string name="login_success_message">Berhasil masuk</string>
+    <string name="dummy_description" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet....</string>
+    <string name="dummy_date" translatable="false">April 11, 2023</string>
+    <string name="story_illustration">Ilustrasi cerita</string>
+    <string name="upload_story">Unggah Cerita</string>
+    <string name="select_image">Pilih gambar dari</string>
+    <string name="select_from_camera">Kamera</string>
+    <string name="select_from_gallery">Galeri</string>
+    <string name="write_a_description">Tulis deskripsi</string>
+    <string name="desc_empty_field_error">Silahkan isi kolom deskripsi</string>
+    <string name="empty_image_error">Pilih gambar</string>
+    <string name="story_upload_failed">Pengunggahan cerita gagal</string>
+    <string name="story_upload">Cerita diunggah</string>
+    <string name="language_setting">Pengaturan bahasa</string>
+    <string name="description">Keterangan : %s</string>
+    <string name="action_detail">Detail Cerita</string>
+    <string name="profile">Profil</string>
+    <string name="appwidget_text">CERITA SPANDUK</string>
+    <string name="empty_text">TIDAK ADA DATA</string>
+    <string name="app_widget_description">ini adalah deskripsi widget aplikasi</string>
+    <string name="retry">Coba lagi</string>
+    <string name="title_map">Peta</string>
+    <string name="active_gps_message">Tolong hidupkan akses lokasi</string>
+
+</resources>
