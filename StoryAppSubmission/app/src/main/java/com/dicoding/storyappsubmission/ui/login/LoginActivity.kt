@@ -47,51 +47,60 @@ class LoginActivity : AppCompatActivity() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        lifecycleScope.launch {
+        if (password.length >= 8) {
+            lifecycleScope.launch {
+                loginViewModel.userLogin(email, password).collect { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            showLoading(true, binding.progressBar)
+                        }
 
-            loginViewModel.userLogin(email, password).collect { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        showLoading(true, binding.progressBar)
-                    }
-
-                    is Result.Success -> {
-                        showLoading(false, binding.progressBar)
-                        Toast.makeText(
-                            this@LoginActivity,
-                            R.string.login_success_message,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        result.data.loginResult?.token?.let { token ->
-                            loginViewModel.saveAuthToken(token)
-                            result.data.loginResult.name?.let {
-                                loginViewModel.saveAuthProfile(
-                                    email,
-                                    it
-                                )
-                            }
-                            Intent(this@LoginActivity, HomeActivity::class.java).also { intent ->
-                                intent.putExtra(EXTRA_TOKEN, token)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                startActivity(intent)
-                                finish()
+                        is Result.Success -> {
+                            showLoading(false, binding.progressBar)
+                            Toast.makeText(
+                                this@LoginActivity,
+                                R.string.login_success_message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            result.data.loginResult?.token?.let { token ->
+                                loginViewModel.saveAuthToken(token)
+                                result.data.loginResult.name?.let {
+                                    loginViewModel.saveAuthProfile(
+                                        email,
+                                        it
+                                    )
+                                }
+                                Intent(
+                                    this@LoginActivity,
+                                    HomeActivity::class.java
+                                ).also { intent ->
+                                    intent.putExtra(EXTRA_TOKEN, token)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    startActivity(intent)
+                                    finish()
+                                }
                             }
                         }
-                    }
 
-                    is Result.Error -> {
-                        showLoading(false, binding.progressBar)
-                        Toast.makeText(
-                            this@LoginActivity,
-                            R.string.login_error_message,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        is Result.Error -> {
+                            showLoading(false, binding.progressBar)
+                            Toast.makeText(
+                                this@LoginActivity,
+                                R.string.login_error_message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
                     }
                 }
             }
+        } else {
+            Toast.makeText(this, getString(R.string.et_password_error_message), Toast.LENGTH_SHORT)
+                .show()
         }
+
+
     }
 
     private fun playAnimation() {

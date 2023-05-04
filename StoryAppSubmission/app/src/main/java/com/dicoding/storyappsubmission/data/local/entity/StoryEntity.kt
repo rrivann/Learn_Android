@@ -22,7 +22,7 @@ data class StoryEntity(
     @ColumnInfo(name = "photo_url")
     val photoUrl: String,
 
-    val lon: Double?,
+    val lon: Double,
 
-    val lat: Double?
+    val lat: Double
 ) : Parcelable

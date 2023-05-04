@@ -48,38 +48,42 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
+        if (password.length >= 8) {
+            lifecycleScope.launch {
+                registerViewModel.userRegister(name, email, password).collect { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            showLoading(true, binding.progressBar)
+                        }
 
-        lifecycleScope.launch {
-            registerViewModel.userRegister(name, email, password).collect { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        showLoading(true, binding.progressBar)
-                    }
+                        is Result.Success -> {
+                            showLoading(false, binding.progressBar)
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                R.string.registration_success,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
 
-                    is Result.Success -> {
-                        showLoading(false, binding.progressBar)
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            R.string.registration_success,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-
-                    is Result.Error -> {
-                        showLoading(false, binding.progressBar)
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            R.string.registration_error_message,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        is Result.Error -> {
+                            showLoading(false, binding.progressBar)
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                R.string.registration_error_message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
                     }
                 }
             }
+        } else {
+            Toast.makeText(this, getString(R.string.et_password_error_message), Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -23,13 +24,14 @@ import com.dicoding.storyappsubmission.ui.home.HomeActivity.Companion.EXTRA_TOKE
 import com.dicoding.storyappsubmission.ui.main.MainActivity
 import com.dicoding.storyappsubmission.ui.map.MapsActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 @ExperimentalPagingApi
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private var token: String = ""
     private val homeViewModel: HomeViewModel by viewModels()
@@ -41,10 +43,10 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,14 +84,16 @@ class HomeFragment : Fragment() {
 
 
     private fun setSwipeRefreshLayout() {
-        binding.swipeRefresh.setOnRefreshListener {
+        binding?.swipeRefresh?.setOnRefreshListener {
             getAllStories()
         }
     }
 
     private fun getAllStories() {
-        homeViewModel.getAllStories(token).observe(viewLifecycleOwner) { result ->
-            updateRecyclerViewData(result)
+        lifecycleScope.launch {
+            homeViewModel.getAllStories(token)?.collect {
+                listAdapter.submitData(lifecycle, it)
+            }
         }
     }
 
@@ -98,14 +102,14 @@ class HomeFragment : Fragment() {
         listAdapter = StoryListAdapter()
 
         listAdapter.addLoadStateListener { loadState ->
-            binding.swipeRefresh.isRefreshing = loadState.source.refresh is LoadState.Loading
+            binding?.swipeRefresh?.isRefreshing = loadState.source.refresh is LoadState.Loading
         }
 
 //      SETUP ADAPTER
         try {
             val itemDecoration =
                 DividerItemDecoration(requireActivity(), linearLayoutManager.orientation)
-            rvStory = binding.rvStory
+            rvStory = binding?.rvStory!!
             rvStory.apply {
                 adapter = listAdapter.withLoadStateFooter(
                     footer = LoadingStateAdapter {
@@ -119,10 +123,6 @@ class HomeFragment : Fragment() {
             e.printStackTrace()
         }
 
-    }
-
-    private fun updateRecyclerViewData(listStory: PagingData<StoryEntity>) {
-        listAdapter.submitData(lifecycle, listStory)
     }
 
 }
