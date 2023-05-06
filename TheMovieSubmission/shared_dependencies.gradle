@@ -24,4 +24,8 @@ dependencies {
 
 //  VIEW MODEL
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
+//  LEAK CANARY
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+
 }

@@ -16,9 +16,6 @@
 
     <style name="Theme.TheMovieSubmission" parent="Base.Theme.TheMovieSubmission" />
 
-    <style name="Text">
-        <item name="android:textColor">@color/red_500</item>
-    </style>
 
     <style name="Theme.TheMovieSubmission.NoActionBar">
         <item name="windowActionBar">false</item>
