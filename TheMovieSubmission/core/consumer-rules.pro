@@ -45,7 +45,7 @@
 }
 
 # Ignore annotation used for build tooling.
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+#-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 # Ignore JSR 305 annotations for embedding nullability information.
 -dontwarn javax.annotation.**
@@ -86,8 +86,6 @@ public *;
 # Uncomment if you use RxJava
 #-dontwarn java.util.concurrent.Flow*
 
-#-dontwarn okhttp3.internal.platform.**
-#-dontwarn org.conscrypt.**
-#-dontwarn org.bouncycastle.**
-#-dontwarn org.openjsse.**
-
+#-keep class org.koin.** { *; }
+#-keepattributes Signature
+#-keep class com.dicoding.core.** { *; }

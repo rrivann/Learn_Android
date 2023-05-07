@@ -10,6 +10,7 @@ import com.dicoding.themoviesubmission.R
 import com.dicoding.themoviesubmission.databinding.ActivityDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding

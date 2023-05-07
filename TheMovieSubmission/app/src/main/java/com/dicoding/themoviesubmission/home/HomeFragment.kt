@@ -1,6 +1,5 @@
 package com.dicoding.themoviesubmission.home
 
-import android.content.BroadcastReceiver
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,20 +41,22 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
 
-            homeViewModel.getAllMovie.observe(viewLifecycleOwner) { movie ->
-                if (movie != null) {
-                    when (movie) {
-                        is Resource.Loading -> binding?.progressBar?.visibility = View.VISIBLE
-                        is Resource.Success -> {
-                            binding?.progressBar?.visibility = View.GONE
-                            movieAdapter.setData(movie.data)
-                        }
+            homeViewModel.getAllMovie.observe(viewLifecycleOwner) {
+                it.apply {
+                    if (this != null) {
+                        when (this) {
+                            is Resource.Loading -> binding?.progressBar?.visibility = View.VISIBLE
+                            is Resource.Success -> {
+                                binding?.progressBar?.visibility = View.GONE
+                                movieAdapter.setData(data)
+                            }
 
-                        is Resource.Error -> {
-                            binding?.progressBar?.visibility = View.GONE
-                            binding?.viewError?.root?.visibility = View.VISIBLE
-                            binding?.viewError?.tvError?.text =
-                                movie.message ?: getString(R.string.something_wrong)
+                            is Resource.Error -> {
+                                binding?.progressBar?.visibility = View.GONE
+                                binding?.viewError?.root?.visibility = View.VISIBLE
+                                binding?.viewError?.tvError?.text =
+                                    message ?: getString(R.string.something_wrong)
+                            }
                         }
                     }
                 }

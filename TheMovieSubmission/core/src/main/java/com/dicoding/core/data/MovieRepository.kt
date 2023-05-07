@@ -16,7 +16,7 @@ class MovieRepository(
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IMovieRepository {
-    override fun getAllMovie(page: Int): Flow<Resource<List<Movie>>> =
+    override fun getAllMovie(): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
                 return localDataSource.getAllMovie().map {
@@ -25,14 +25,14 @@ class MovieRepository(
             }
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
-                remoteDataSource.getAllMovie(page)
+                remoteDataSource.getAllMovie()
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
                 val movieList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertMovie(movieList)
             }
 
-            override fun shouldFetch(data: List<Movie>?): Boolean = data.isNullOrEmpty()
+            override fun shouldFetch(data: List<Movie>?): Boolean = data == null || data.isEmpty()
 
         }.asFlow()
 

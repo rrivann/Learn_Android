@@ -5,7 +5,7 @@ import com.dicoding.core.domain.repository.IMovieRepository
 
 class MovieInteractor(private val movieRepository: IMovieRepository) : MovieUseCase {
 
-    override fun getAllMovie(page: Int) = movieRepository.getAllMovie(page)
+    override fun getAllMovie() = movieRepository.getAllMovie()
 
     override fun getFavoriteMovie() = movieRepository.getFavoriteMovie()
 
