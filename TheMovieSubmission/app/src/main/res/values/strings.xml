@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TheMovieSubmission</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+
+    <string name="menu_favorite">Favorite</string>
+    <string name="title_favorite">favorite</string>
+    <string name="no_data">Empty data</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>
