@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">MySubmissionApp</string>
+    <string name="app_name">Crypto App</string>
+    <string name="my_name">Rivan Albani Ray</string>
+    <string name="my_email">rivanalbaniray88@gmail.com</string>
+    <string name="total_supply">Total Supply : %s</string>
+    <string name="profile">Profile</string>
+    <string name="search_crypto">Cari kripto</string>
+    <string name="back">Back</string>
+    <string name="favorite">Favorite</string>
+    <string name="data_not_found">Data tidak ditemukan</string>
 </resources>
