@@ -18,7 +18,7 @@ fun MyTopBar(onProfileClick: () -> Unit, onFavoriteClick: () -> Unit) {
             IconButton(onClick = { onFavoriteClick() }) {
                 Icon(
                     imageVector = Icons.Default.Favorite,
-                    contentDescription = stringResource(R.string.favorite)
+                    contentDescription = "favorite_page"
                 )
             }
             IconButton(onClick = {
@@ -26,7 +26,7 @@ fun MyTopBar(onProfileClick: () -> Unit, onFavoriteClick: () -> Unit) {
             }) {
                 Icon(
                     imageVector = Icons.Default.AccountCircle,
-                    contentDescription = stringResource(R.string.profile)
+                    contentDescription = "about_page"
                 )
             }
         },
